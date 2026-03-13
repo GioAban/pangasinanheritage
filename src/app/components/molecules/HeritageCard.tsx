@@ -3,16 +3,19 @@ import Link from "next/link";
 import { Spot } from "@/types";
 
 export const HeritageCard = ({ spot }: { spot: Spot }) => {
-  // Simplified image logic: works for both local and production
+  // Kunin natin ang basePath mula sa config (or hardcode it for simplicity)
+  const basePath = "/pangasinanheritage";
+
   const imageSrc = spot.image.startsWith("http")
     ? spot.image
     : spot.image.startsWith("/")
-      ? spot.image
-      : `/${spot.image}`;
+      ? `${basePath}${spot.image}` // Idagdag ang basePath dito
+      : `${basePath}/${spot.image}`;
 
   return (
     <Link
-      href={`/view-spot/${spot.id}`}
+      // Dapat may basePath din ang href mo para hindi ma-404 ang navigation
+      href={`${basePath}/view-spot/${spot.id}`}
       className="group block w-80 flex-shrink-0"
     >
       <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition-all hover:shadow-xl">
@@ -22,7 +25,7 @@ export const HeritageCard = ({ spot }: { spot: Spot }) => {
             alt={spot.title}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-110"
-            unoptimized
+            unoptimized // Keep this, needed for GH Pages
           />
           <div className="absolute left-4 top-4">
             <span className="rounded-full bg-white/90 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-blue-600 shadow-sm backdrop-blur">
