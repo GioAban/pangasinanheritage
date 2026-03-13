@@ -1,12 +1,15 @@
 import Image from "next/image";
-import Link from "next/link"; // Import Link
+import Link from "next/link";
 import { Spot } from "@/types";
 
 export const HeritageCard = ({ spot }: { spot: Spot }) => {
-  const basePath = "/pangasinan";
+  // Simplified image logic: works for both local and production
   const imageSrc = spot.image.startsWith("http")
     ? spot.image
-    : `${basePath}/${spot.image.replace(/^\//, "")}`;
+    : spot.image.startsWith("/")
+      ? spot.image
+      : `/${spot.image}`;
+
   return (
     <Link
       href={`/view-spot/${spot.id}`}

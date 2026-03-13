@@ -4,26 +4,34 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import BackButton from "@/app/components/atoms/BackButton";
 import Button from "@/app/components/atoms/Button";
+
 interface PageProps {
   params: Promise<{ id: string }>;
 }
+
 export async function generateStaticParams() {
   const data = await getDbData();
   return data.spots.map((spot: Spot) => ({
     id: spot.id.toString(),
   }));
 }
+
 export default async function ViewSpotPage({ params }: PageProps) {
   const resolvedParams = await params;
   const data = await getDbData();
   const spot = data.spots.find(
     (s: Spot) => s.id.toString() === resolvedParams.id,
   );
+
   if (!spot) return notFound();
-  const basePath = "/pangasinan";
+
+  // CLEAN LOGIC: Inalis na ang basePath at hardcoded localhost link
   const imageSrc = spot.image.startsWith("http")
     ? spot.image
-    : `${basePath}/${spot.image.replace(/^\//, "")}`;
+    : spot.image.startsWith("/")
+      ? spot.image
+      : `/${spot.image}`;
+
   return (
     <main className="min-h-screen bg-white">
       <div className="relative h-[50vh] min-h-[400px] w-full lg:h-[70vh]">
@@ -51,6 +59,7 @@ export default async function ViewSpotPage({ params }: PageProps) {
           </div>
         </div>
       </div>
+
       <section className="container mx-auto px-6 py-12 md:py-20">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="lg:col-span-8">
@@ -61,6 +70,7 @@ export default async function ViewSpotPage({ params }: PageProps) {
               {spot.description}
             </p>
           </div>
+
           <div className="lg:col-span-4">
             <div className="sticky top-8 h-fit rounded-[2rem] border border-slate-100 bg-slate-50 p-8 shadow-sm md:p-10">
               <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400">

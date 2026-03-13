@@ -18,9 +18,9 @@
   "dependencies": {
     "framer-motion": "^12.23.22",
     "lucide-react": "^0.575.0",
-    "next": "16.1.6",
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "next": "^15.5.12",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",

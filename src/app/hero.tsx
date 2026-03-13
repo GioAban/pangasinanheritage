@@ -5,12 +5,10 @@ import Container from "./components/molecules/container";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
-
 const images = [
-  `${BASE_PATH}/images/cover_page/hundred_island.jpg`,
-  `${BASE_PATH}/images/cover_page/bolinao_light_house.jpg`,
-  `${BASE_PATH}/images/cover_page/hostrping.jpg`,
+  `/images/cover_page/hundred_island.jpg`,
+  `/images/cover_page/bolinao_light_house.jpg`,
+  `/images/cover_page/hostrping.jpg`, // Double check lang yung spelling nito sa public folder!
 ];
 
 const HomeHero = () => {
