@@ -1,6 +1,7 @@
-import type { NextConfig } from "next";
-const nextConfig: NextConfig = {
+const nextConfig = {
   output: "export",
+  basePath: "/pangasinanheritage",
+  assetPrefix: "/pangasinanheritage/",
   images: {
     unoptimized: true,
   },

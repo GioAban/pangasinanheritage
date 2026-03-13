@@ -5,10 +5,13 @@ import Container from "./components/molecules/container";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
+const basePath =
+  process.env.NODE_ENV === "production" ? "/pangasinanheritage" : "";
+
 const images = [
-  `/images/cover_page/hundred_island.jpg`,
-  `/images/cover_page/bolinao_light_house.jpg`,
-  `/images/cover_page/hostrping.jpg`, // Double check lang yung spelling nito sa public folder!
+  `${basePath}/images/cover_page/hundred_island.jpg`,
+  `${basePath}/images/cover_page/bolinao_light_house.jpg`,
+  `${basePath}/images/cover_page/hostrping.jpg`,
 ];
 
 const HomeHero = () => {

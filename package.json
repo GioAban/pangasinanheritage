@@ -1,18 +1,14 @@
 {
-  "homepage": "https://gioaban.github.io/pangasinan",
-  "name": "pangasinan",
+  "homepage": "https://gioaban.github.io/pangasinanheritage",
+  "name": "pangasinanheritage",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "format": "prettier --write .",
-    "json-server": "json-server --watch db.json --port 5600",
-    "dev:all": "concurrently \"json-server db.json --port 5600\" \"next dev\"",
-    "export": "next build",
-    "predeploy": "next build",
+    "lint": "next lint",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d out"
   },
   "dependencies": {
